@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2.5cm,headheight=1cm]{geometry}
+
+
+\title{Oscilador armónico simple y forzado sub-amortiguado para sistema masa resorte}
+\author{Karla Hollmann}
+\date{Septiembre 2020}
+
+\begin{document}
+\maketitle
+
+\section{Oscilador armónico simple}
+
+Conociendo la ecuación de movimiento (\ref{eq:1}) para un sistema masa resorte, la cual relaciona la posición y el tiempo, es posible graficar ambas variables al conocer ciertas características del sistema tales como la constante elástica del resorte $k$, la masa $m$ que cuelga de este y la posición inicial $y_{0}$.
+\\
+
+ \begin{equation}\label{eq:1}
+    y(t)=y_{0}\cos{\sqrt{\frac{k}{m}}t}
+ \end{equation}
+\\
+
+Tener en cuenta que el sistema de referencia de la posición $y$ se toma desde la posición de equilibrio del resorte con la masa.
+\\ 
+
+En la figura (\ref{fig:1}) es posible ver un paquete seis gráficas de posición vs tiempo para el movimiento de un sistema masa resorte. Las primeras tres muestran cómo varía la posición de la masa respecto al tiempo si se varia la posición inicial en cada caso, para estas tres primeras gráficas en verde la masa y la constante elástica son iguales y tienen un valor de m=1kg y k=2N/m. Como se observa en las gráficas, el movimiento tiene un comportamiento armónico que implica conservación de la energía, lo único que varia es la amplitud la cual depende directamente de la posición inicial de la masa a la hora del movimiento.
+\\
+
+\begin{figure}[h!]
+	\includegraphics[width=1\linewidth]{pvtmas.png}
+	\caption{Posición vs Tiempo.}
+	\label{fig:1}
+\end{figure}
+
+
+Las otras tres gráficas en azul de la posición vs tiempo, se toman para los mismos valores de posición inicial para los gráficos en verde pero en esta ocasión lo que varia son las constantes del sistema tales como la constante elástica que en este caso tendría el valor de 1N/m, y la masa que sería de 5kg. Tal como en las gráficas anteriores, la posición inicial solo muestra un cambio en la amplitud del sistema, sin embargo, en este caso al cambiar las constantes se percibe un cambio en la frecuencia de la onda, la cual es menor considerando el caso anterior, eso se debe a la relación que se muestra en la ecuación (\ref{eq:1}) de la raíz cuadrada de k sobre m, como m es mayor y k es menor para este caso, la frecuencia es menor en comparación con las de las gráficas anteriores.
+\\
+
+Para conocer cómo es la relación de la velocidad y el tiempo para este paquete de datos, es necesario derivar la ecuación de movimiento, de tal forma la velocidad del sistema en función del tiempo estaria dada por la ecuación (\ref{eq:2}).
+\\
+
+\begin{equation}\label{eq:2}
+    v(t)=-y_{0}\sqrt{\frac{k}{m}}\sin{\sqrt{\frac{k}{m}}t}
+ \end{equation}
+ 
+Conociendo la relación anterior es posible obtener las graficas (Figura (\ref{fig:2})) de velocidad vs tiempo del paquete de datos de la figura (\ref{fig:1}).
+\\
+
+\begin{figure}[h!]
+	\includegraphics[width=1\linewidth]{vvstmas.png}
+	\caption{Velocidad vs Tiempo.}
+	\label{fig:2}
+\end{figure}
+
+\section{Oscilador armónico sub-amortiguado}
+
+Al considerar un sistema de masa resorte donde se tiene una fuerza de fricción que consta de una fuerza dependiente de la velocidad, se obtiene una ecuación de movimiento (\ref{eq:3}) en la cual aparece un factor $\gamma$ el cual seria la constante de proporcionalidad de la fuerza respecto a la velocidad, el movimiento del sistema dependerá de el valor de $\gamma$.
+\\
+
+\begin{equation}\label{eq:3}
+    \ddot{y}+\omega_{0}^2y+\gamma\dot{y}
+ \end{equation}
+
+Con $\omega_{0}=\sqrt{k/m}$ que es la frecuencia del oscilador.
+\\
+
+Para resolver esta ecuación, se tiene que tener en cuenta qué tipo de amortiguamiento es el que genera la fuerza de fricción, en este caso se trata de un amortiguamiento débil lo que implica que $\gamma/2<\omega_{0}$. Así, la solución a la ecuación de movimiento seria la ecuación (\ref{eq:4}).
+\\
+
+\begin{equation}\label{eq:4}
+    y(t)=y_{0}e^{-\frac{\gamma}{2}t}\cos{\omega^{'}t}
+ \end{equation}
+
+Con $\omega^{'}=\sqrt{\omega_{0}^{2}-(\gamma/2)^{2}}$.
+\\
+
+Teniendo en cuenta la ecuación anterior, es posible observar que si $\gamma<<\omega_{0}$ entonces $\omega^{'} \approx \omega_{0}$.
+\\ 
+
+Conociendo las ecuaciones de movimiento, se grafican (figura (\ref{fig:3})) los valores de posición respecto al tiempo para los datos anteriores agregándoles el factor $\gamma$.
+\\ 
+
+\begin{figure}[h!]
+	\includegraphics[width=1\linewidth]{pvtforzado.png}
+	\caption{Posición vs Tiempo.}
+	\label{fig:3}
+\end{figure}
+
+De las figuras de la posición para las gráficas verdes, para las cuales se tiene un valor de $\gamma=3(1/s)$, se puede observar una gran diferencia respecto al caso de las gráficas de posición vs tiempo del oscilador armónico simple, en este caso la masa no va a continuar en un estado oscilatorio sino que la energía se va a disipar debido a la fuerza de fricción que aparece en el sistema, esto genera que la masa vuelva a estar en su estado de equilibrio y en reposo luego de cierto tiempo t. Ahora, si se observan las gráficas azules, las cuales tienen tienen para $\gamma$ un valor de $0.1(1/s)$, observamos un comportamiento que tiende a ser más parecido al del caso anterior en el movimiento armónico simple, sin embargo, si se comparta la amplitud, es posible ver que a medida que pasa el tiempo esta va disminuyendo, lo que significa que el sistema esta perdiendo energía. 
+\\
+
+Para conocer la velocidad del sistema (ecuación (\ref{eq:5})), basta con derivar la ecuación (\ref{eq:4}).
+\\
+
+\begin{equation}\label{eq:5}
+    v(t)=-y_{0}\frac{\gamma}{2}e^{-\frac{\gamma}{2}t}\cos{\omega^{'}t}-y_{0}e^{-\frac{\gamma}{2}t}\omega^{'}\sin{\omega^{'}t}
+ \end{equation}
+
+Así, se obtiene la relación de velocidad respecto al tiempo para la figura (\ref{fig:4}) del sistema masa resorte débilmente amortiguado.
+
+\begin{figure}[h!]
+	\includegraphics[width=1\linewidth]{vvstforzado.png}
+	\caption{Posición vs Tiempo.}
+	\label{fig:3}
+\end{figure}
+
+\end{document}
