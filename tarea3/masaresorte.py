@@ -89,3 +89,4 @@ def ecmovOF(y,t,k,m,gamma):
 #condiciones iniciales y0=[y0x,y0v]
 #sol = odeint(ecmovOF, y0, t, args=(k,m,gamma))
     
+#para las velocidades realizaria un ciclo en el cual me diera una lista de valores de datos de la pendiente de la recta de acuerdo a la def de derivada
