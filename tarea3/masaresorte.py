@@ -1,5 +1,8 @@
 import numpy as np 
 
+
+#primera parte del codigo es la version anterior de como se habia resuelto la tarea con una version muy aproximada de las ecuaciones la cual no tenia en cuenta la fase del oscilador
+
 class oscilador: #resorte MAS
     
     def __init__(self,m=0,k=0,y0=0,t=0):
@@ -55,31 +58,34 @@ class osciladorforzado(oscilador): #resorte subamortiguado
             ti.append(i)
         return ti
     
-   
-    from scipy.integrate import odeint
-    #resolver las ec con odeint
-    #Movimiento armonico simple
-    def ecmovMAS(y,t,k,m):
-        y1=y[0]
-        y2=y[1]
-        dy1=y2 #se define y2 como la derivada de y1
-        dy2=-(k/m)*y1
-        return [dy1,dy2]
+
     
-    #Se definen las condiciones iniciales y0=[y0x,y0v]
-    #Se crea un intervalo de tiempo 
-    #sol = odeint(ecmovMAS, y0, t, args=(k,m))
-    #y=sol[:,0]
-    #para graficar basta con hacer el plot con la posicion y el intervalo de tiempo
+#resolver las ec con odeint
+
+
+from scipy.integrate import odeint
+#Movimiento armonico simple
+def ecmovMAS(y,t,k,m):
+    y1=y[0]
+    y2=y[1]
+    dy1=y2 #se define y2 como la derivada de y1
+    dy2=-(k/m)*y1
+    return [dy1,dy2]
     
-    #oscilador forzado
-    def ecmovOF(y,t,k,m,gamma):
-        y1=y[0]
-        y2=y[1]
-        dy1=y2 #se define y2 como la derivada de y1
-        dy2=-gamma*y2-(k/m)*y1
-        return [dy1,dy2]
+#Se definen las condiciones iniciales y0=[y0x,y0v]
+#Se crea un intervalo de tiempo 
+#sol = odeint(ecmovMAS, y0, t, args=(k,m))
+#y=sol[:,0]
+#para graficar basta con hacer el plot con la posicion y el intervalo de tiempo
     
-    #condiciones iniciales y0=[y0x,y0v]
-    #sol = odeint(ecmovOF, y0, t, args=(k,m,gamma))
+#oscilador forzado
+def ecmovOF(y,t,k,m,gamma):
+    y1=y[0]
+    y2=y[1]
+    dy1=y2 #se define y2 como la derivada de y1
+    dy2=-gamma*y2-(k/m)*y1
+    return [dy1,dy2]
+    
+#condiciones iniciales y0=[y0x,y0v]
+#sol = odeint(ecmovOF, y0, t, args=(k,m,gamma))
     
