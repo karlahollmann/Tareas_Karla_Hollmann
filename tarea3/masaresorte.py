@@ -54,3 +54,32 @@ class osciladorforzado(oscilador): #resorte subamortiguado
         for i in np.arange(0,self.t,0.1):
             ti.append(i)
         return ti
+    
+   
+    from scipy.integrate import odeint
+    #resolver las ec con odeint
+    #Movimiento armonico simple
+    def ecmovMAS(y,t,k,m):
+        y1=y[0]
+        y2=y[1]
+        dy1=y2 #se define y2 como la derivada de y1
+        dy2=-(k/m)*y1
+        return [dy1,dy2]
+    
+    #Se definen las condiciones iniciales y0=[y0x,y0v]
+    #Se crea un intervalo de tiempo 
+    #sol = odeint(ecmovMAS, y0, t, args=(k,m))
+    #y=sol[:,0]
+    #para graficar basta con hacer el plot con la posicion y el intervalo de tiempo
+    
+    #oscilador forzado
+    def ecmovOF(y,t,k,m,gamma):
+        y1=y[0]
+        y2=y[1]
+        dy1=y2 #se define y2 como la derivada de y1
+        dy2=-gamma*y2-(k/m)*y1
+        return [dy1,dy2]
+    
+    #condiciones iniciales y0=[y0x,y0v]
+    #sol = odeint(ecmovOF, y0, t, args=(k,m,gamma))
+    
